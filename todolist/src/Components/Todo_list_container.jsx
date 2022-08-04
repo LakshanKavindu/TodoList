@@ -37,15 +37,6 @@ const Todo_list_container = () => {
         }).catch((err)=>{
             console.log(`error : ${err}`);
         })
-       
-
-        
-        
-        
-        
-        
-      
-
     }
  
 

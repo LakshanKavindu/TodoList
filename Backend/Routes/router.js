@@ -50,6 +50,27 @@ router.route("/delete/:id").delete(async (req,res)=>{
     })
 })
 
+router.route("/update/:id").put(async (req,res)=>{
+
+    let todo_id = req.params.id;
+
+    const{title,time,marked} = req.body;
+    console.log(title);
+   
+
+    const updatetodo ={
+      
+        marked
+    }
+
+    const update = await Todolist.findByIdAndUpdate(todo_id,updatetodo).
+    then(()=>{
+        res.status(200).send({status:"todo item updated"})
+    }).catch((err)=>{
+        res.status(400).send({status:"update failed",error:err.message})
+    })
+})
+
 
 
 

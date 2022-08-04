@@ -14,10 +14,10 @@ const Todo_Form = () => {
 
       title
     }
+    set_title("");
     
     axios.post("http://localhost:8080/todo/add",new_todo_item).then(()=>{
-      alert("Todo item addded");
-      set_title("");
+      alert("todo item added");
     }).catch((err)=>{
       alert(`err : ${err}`);
     })
