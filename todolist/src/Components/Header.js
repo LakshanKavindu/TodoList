@@ -1,5 +1,5 @@
 import React from 'react';
-
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import Input from '@mui/material/Input';
 
 import SummarizeIcon from '@mui/icons-material/Summarize';
@@ -22,7 +22,7 @@ const Header = () => {
                 <a className="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link" href="/add">Add Items</a>
+                <a className="nav-link" href="/add"><AddBoxIcon className='plus_nav'/>Add Items</a>
                 </li>
                 {/* <li className="nav-item">
                 <a className="nav-link" href="#">Pricing</a>

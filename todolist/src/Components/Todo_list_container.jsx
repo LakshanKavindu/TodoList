@@ -5,9 +5,11 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import CheckIcon from '@mui/icons-material/Check';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import {useNavigate} from 'react-router-dom';
 
 const Todo_list_container = () => {
-
+    const navigate = useNavigate();
     const[todoItems,settodoItems] = useState([]);
 
     useEffect(()=>{
@@ -24,34 +26,48 @@ const Todo_list_container = () => {
 
         get_todos();
     },[])
-    return (
-        <div className='container-fluid todo_list_container'>
-            <div className="second_container">
-            {
-                    todoItems.map((Todo)=>(
-                        
-                        
-                        <div className='todo_item_container' >
-                            <div className="todo_details">
-                                <h5>{Todo.title}</h5>
-                                <p>{Todo.time}</p>
-                            </div>
-                            <div className="todo_buttons">
-                                
-                                <Stack spacing={2} direction="row">
+
+    if (todoItems!=0){
+        return (
+            <div className='container-fluid todo_list_container'>
+                <div className="second_container">
+                   
+                {
+                        todoItems.map((Todo)=>(
+                            
+                            
+                            <div className='todo_item_container' >
+                                <div className="todo_details">
+                                    <h5>{Todo.title}</h5>
+                                    <p>{Todo.time}</p>
+                                </div>
+                                <div className="todo_buttons">
                                     
-                                    <Button variant="contained" color="success"><CheckIcon/></Button>
-                                    <Button variant="contained" color="error">Outlined <DeleteForeverIcon/></Button>
-                                </Stack>
+                                    <Stack spacing={2} direction="row">
+                                        
+                                        <Button variant="contained" color="success"><CheckIcon/></Button>
+                                        <Button variant="contained" color="error">DELETE <DeleteForeverIcon className='del_btn'/></Button>
+                                    </Stack>
+                                </div>
+                                   
                             </div>
-                               
-                        </div>
-                    )
-               ) }
+                        )
+                   ) }
+                </div>
+                   
             </div>
-               
-        </div>
-    )
+        )
+    }
+    else{
+        return(
+            <div className="container-fluid blank_container">
+                <h1 className='blank_title'>There are no todo items yet.</h1>
+                <Button variant="contained" color="success" onClick={()=>navigate("/add")}>Add<AddBoxIcon className='plus'/></Button>
+            </div>
+        )
+        
+    }
+   
 }
 
 export default Todo_list_container;
