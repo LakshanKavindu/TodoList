@@ -27,26 +27,51 @@ const Todo_list_container = () => {
         get_todos();
     },[])
 
+
+    const del_todo =(e)=>{
+        
+        axios.delete(`http://localhost:8080/todo/delete/${e.target.name}`).then((res)=>{
+            console.log(res.data);
+            settodoItems(todoItems.filter(todo=> todo._id !== e.target.name));
+
+        }).catch((err)=>{
+            console.log(`error : ${err}`);
+        })
+       
+
+        
+        
+        
+        
+        
+      
+
+    }
+ 
+
+
+
     if (todoItems!=0){
         return (
-            <div className='container-fluid todo_list_container'>
+            <div className='container-fluid todo_list_container' >
                 <div className="second_container">
                    
                 {
                         todoItems.map((Todo)=>(
                             
-                            
-                            <div className='todo_item_container' >
+                         
+                            <div className='todo_item_container' key={Todo._id}  >
                                 <div className="todo_details">
                                     <h5>{Todo.title}</h5>
                                     <p>{Todo.time}</p>
+                                   
                                 </div>
                                 <div className="todo_buttons">
                                     
                                     <Stack spacing={2} direction="row">
                                         
                                         <Button variant="contained" color="success"><CheckIcon/></Button>
-                                        <Button variant="contained" color="error">DELETE <DeleteForeverIcon className='del_btn'/></Button>
+                                        <Button variant="contained" color="error" name={Todo._id} onClick={del_todo} >DELETE <DeleteForeverIcon className='del_btn'/></Button>
                                     </Stack>
                                 </div>
                                    

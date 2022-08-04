@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.route("/add").post((req,res)=>{
     const title = req.body.title;
-    const time = new Date().toLocaleString('en-US', { timeZone: 'UTC' });
+    const time = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
     const marked = false
 
     const newtodo = new Todolist({
