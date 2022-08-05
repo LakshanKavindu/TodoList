@@ -38,7 +38,16 @@ const Todo_list_container = () => {
             console.log(`error : ${err}`);
         })
     }
- 
+
+    const update_todo=(e)=>{
+        axios.put(`http://localhost:8080/todo/update/${e.target.name}`).then((res)=>{
+            console.log(res.data);
+        }).catch((err)=>{
+            console.log(`error:${err}`);
+        })
+    }
+    
+    
 
 
 
@@ -61,7 +70,7 @@ const Todo_list_container = () => {
                                     
                                     <Stack spacing={2} direction="row">
                                         
-                                        <Button variant="contained" color="success"><CheckIcon/></Button>
+                                        <Button variant="contained" color="success" name={Todo._id} onClick={update_todo}><CheckIcon/></Button>
                                         <Button variant="contained" color="error" name={Todo._id} onClick={del_todo} >DELETE <DeleteForeverIcon className='del_btn'/></Button>
                                     </Stack>
                                 </div>
